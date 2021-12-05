@@ -2,6 +2,7 @@ mod point;
 mod traits;
 
 use crate::point::Point;
+use crate::traits::traits::{NewsArticle, Summary};
 
 fn largest_i32(list: &[i32]) -> i32 {
     let mut largest = list[0];

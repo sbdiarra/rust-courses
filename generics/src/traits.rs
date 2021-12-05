@@ -1,4 +1,10 @@
+use crate::Summary;
+use crate::traits::traits::Tweet;
+
 pub mod traits {
+    use std::fmt::{Debug, Display};
+    use std::ptr::null;
+
     pub trait Summary {
         fn summarize_author(&self) -> String;
 
@@ -60,5 +66,41 @@ pub mod traits {
         };
 
         println!("New article available! {}", article.summarize());
+    }
+
+    // one possibility
+    pub fn notify(item: &impl Summary) {
+        println!("Breaking news! {}", item.summarize())
+    }
+
+    //another one
+    pub fn notify2<T: Summary>(item: &T) {
+        println!("Breaking news! {}", item.summarize())
+    }
+
+    pub fn notify3(item: &impl Summary + Display) {
+        println!("Breaking news! {}", item.summarize())
+    }
+
+    //another one
+    pub fn notify4<T: Summary + Display>(item: &T) {
+        println!("Breaking news! {}", item.summarize())
+    }
+
+    fn some_function<T, U>(t: &T, u: &U) -> i32
+        where  T: Display + Clone, U: Clone + Debug {
+        return 12
+    }
+
+
+    fn returns_summarizable() -> impl Summary {
+        Tweet {
+            username: String::from("horse_ebooks"),
+            content: String::from(
+                "of course, as you probably already know, people",
+            ),
+            reply: false,
+            retweet: false,
+        }
     }
 }
