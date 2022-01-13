@@ -23,7 +23,7 @@ fn main() {
                 panic!("Problem creating the file: {:?}", error);
             })
         } else {
-            panic!("Problem opening the file: {:?}", error)
+            panic!("problem opening the file: {:?}", error)
         }
     });
 }
